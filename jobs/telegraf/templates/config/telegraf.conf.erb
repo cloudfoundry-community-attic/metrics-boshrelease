@@ -1,0 +1,100 @@
+# Tags can also be specified via a normal map, but only one form at a time:
+[tags]
+	# dc = "us-east-1"
+
+# Configuration for telegraf agent
+[agent]
+	# Default data collection interval for all plugins
+	interval = "<%= properties.telegraf.interval %>"
+
+	# If utc = false, uses local time (utc is highly recommended)
+	utc = true
+
+	# Precision of writes, valid values are n, u, ms, s, m, and h
+	# note: using second precision greatly helps InfluxDB compression
+	precision = "s"
+
+	# run telegraf in debug mode
+	debug = false
+
+	# Override default hostname, if empty use os.Hostname()
+	hostname = "<%= name %>-<%= index %>"
+
+
+###############################################################################
+#                                  OUTPUTS                                    #
+###############################################################################
+
+[outputs]
+
+
+# Configuration for influxdb server to send metrics to
+[outputs.influxdb]
+	# The full HTTP endpoint URL for your InfluxDB instance
+	url = "<%= properties.influxdb.protocol %>://<%= properties.influxdb.host %>:<%= properties.influxdb.port %>" # required.
+
+	# The target database for metrics. This database must already exist
+	database = "<%= properties.influxdb.database %>" # required.
+
+	# Connection timeout (for the connection with InfluxDB), formatted as a string.
+	# Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+	# If not provided, will default to 0 (no timeout)
+	# timeout = "5s"
+
+	username = "<%= properties.influxdb.username %>"
+	password = "<%= properties.influxdb.password %>"
+
+
+###############################################################################
+#                                  PLUGINS                                    #
+###############################################################################
+
+# Read metrics about cpu usage
+[cpu]
+	# Whether to report per-cpu stats or not
+	percpu = true
+	# Whether to report total system cpu stats or not
+	totalcpu = true
+
+# Read metrics about disk usage by mount point
+[disk]
+	# no configuration
+
+# Read metrics about memory usage
+[mem]
+	# no configuration
+
+# Read metrics about network interface usage
+[net]
+	# By default, telegraf gathers stats from any up interface (excluding loopback)
+	# Setting interfaces will tell it to gather these explicit interfaces,
+	# regardless of status.
+	#
+	# interfaces = ["eth0", ... ]
+# Read metrics about system load & uptime
+[system]
+	# no configuration
+<% if properties.telegraf.postgresql_uris %>
+[postgresql]
+  <% properties.telegraf.postgresql_uris.each do |uri| %>
+	[[postgresql.servers]]
+  address = "<%= uri %>"
+	<% end %>
+<% end %>
+
+<% if properties.telegraf.httpjson %>
+[httpjson]
+	# Specify services via an array of tables
+	[[httpjson.services]]
+		name = "<%= properties.telegraf.httpjson.name %>"
+
+		# URL of each server in the service's cluster
+		servers = [
+			<% properties.telegraf.httpjson.uris.each do |uri| %>
+				<%= uri %>,
+			<% end %>
+		]
+
+		# HTTP method to use (case-sensitive)
+		method = "GET"
+  <% end %>

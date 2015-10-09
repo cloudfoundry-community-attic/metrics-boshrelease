@@ -9,29 +9,29 @@ update:
   serial: false
 
 jobs:
-  - name: metrics_leader_z1
-    templates:
-    - name: metrics
-      release: metrics
-    instances: 0
-    resource_pool: small_z1
-    networks: (( merge ))
-    persistent_disk: 0
-    properties: {}
   - name: metrics_z1
     templates:
-    - name: metrics
+    - name: grafana
       release: metrics
-    instances: 0
+    - name: influxdb
+      release: metrics
+    - name: telegraf
+      release: metrics
+    instances: 1
     resource_pool: small_z1
-    networks: (( merge ))
-    persistent_disk: 0
-    update:
-      canaries: 10
+    networks:
+      - name: metrics1
+        static_ips: (( static_ips(0) ))
     properties:
-      metrics:
-        leader_address: (( merge ))
+      grafana:
+        admin_username: admin
+        admin_password: password
+      influxdb:
+        password: password
+        username: admin
+        database: metrics
+        host: (( grab jobs.metrics_z1.networks.metrics1.static_ips.[0] ))
 
-networks: (( merge ))
+networks: (( params "please set networks" ))
 
 properties: {}

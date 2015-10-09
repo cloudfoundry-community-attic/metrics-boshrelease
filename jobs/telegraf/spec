@@ -1,0 +1,32 @@
+---
+name: telegraf
+packages:
+- telegraf
+templates:
+  bin/monit_debugger: bin/monit_debugger
+  bin/telegraf_ctl: bin/telegraf_ctl
+  config/telegraf.conf.erb: config/telegraf.conf
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+properties:
+  telegraf.interval:
+    description: "interval of sending data, eg. 10s, 10m"
+    default: "30s"
+  telegraf.postgresql_uris:
+    description: "array of uri to monitoring postgres"
+
+  influxdb.host:
+    description: "host of influxdb"
+  influxdb.port:
+    description: "port of influxdb"
+    default: "8086"
+  influxdb.database:
+    description: "database name of influxdb"
+  influxdb.username:
+    description: "username of influxdb"
+  influxdb.password:
+    description: "password of influxdb"
+  influxdb.protocol:
+    description: "protocol of influxdb"
+    default: "http"

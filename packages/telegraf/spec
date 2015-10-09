@@ -1,0 +1,5 @@
+---
+name: telegraf
+dependencies: []
+files:
+- telegraf/telegraf_linux_amd64_*.tar.gz
