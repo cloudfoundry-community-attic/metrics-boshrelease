@@ -91,7 +91,7 @@
 		# URL of each server in the service's cluster
 		servers = [
 			<% properties.telegraf.httpjson.uris.each do |uri| %>
-				<%= uri %>,
+				"<%= uri %>",
 			<% end %>
 		]
 

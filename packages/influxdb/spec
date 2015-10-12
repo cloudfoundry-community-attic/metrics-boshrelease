@@ -1,8 +1,7 @@
 ---
 name: influxdb
 
-dependencies:
-- go
+dependencies: []
 
 files:
-- influxdb/**/*
+- influxdb/*

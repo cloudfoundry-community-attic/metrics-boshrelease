@@ -1,9 +1,7 @@
 ---
 name: bootstrapper
 
-dependencies:
-- go
+dependencies: []
 
 files:
-- bootstrapper/**/*
-- influxdb/**/*
+- bootstrapper/*

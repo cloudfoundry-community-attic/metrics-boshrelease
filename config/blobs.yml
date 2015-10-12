@@ -11,3 +11,11 @@ telegraf/telegraf_linux_amd64_0.1.9.tar.gz:
   object_id: cff799d0-593c-4c8c-a06c-10c9c3ed14f0
   sha: 22bf84a7b6b05781786e04f3716a5c5747cec6a4
   size: 5456093
+bootstrapper/bootstrapper:
+  object_id: 934bdb90-4cd8-48d2-82d9-d431a850b877
+  sha: 308f62474bacb23f070d2271ea3c2c300a4bd5c6
+  size: 6415624
+influxdb/influxdb_0.9.4.2_x86_64.tar.gz:
+  object_id: 1f7ae69d-693e-4d02-863f-476c0981e661
+  sha: 4b1bf1e6ed8dbb6a30e6182cab0d66e5417610ab
+  size: 8354832

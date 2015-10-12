@@ -1,154 +1,0 @@
-!<arch>
-__.PKGDEF       0           0     0     644     11607     `
-go object darwin amd64 go1.4.2 X:precisestack
-
-$$
-package help
-	import runtime "runtime"
-	import io "io"
-	import os "os"
-	import strings "strings"
-	import fmt "fmt"
-	type @"io".Writer interface { Write(@"io".p []byte) (@"io".n int, @"io".err error) }
-	type @"".Command struct { Stdout @"io".Writer }
-	func (@"".cmdÂ·2 *@"".Command) Run (@"".argsÂ·3 ...string "esc:0x0") (? error)
-	func @"".NewCommand () (? *@"".Command) { return (&@"".Command{ Stdout:@"os".Stdout }) }
-	func @"".init ()
-	type @"os".dirInfo struct { @"os".buf []byte; @"os".nbuf int; @"os".bufp int }
-	type @"os".file struct { @"os".fd int; @"os".name string; @"os".dirinfo *@"os".dirInfo; @"os".nepipe int32 }
-	func (@"os".fileÂ·2 *@"os".file) @"os".close () (? error)
-	type @"os".FileMode uint32
-	func (@"os".mÂ·2 @"os".FileMode) IsDir () (? bool) { return @"os".mÂ·2 & @"os".FileMode(0x80000000) != @"os".FileMode(0x0) }
-	func (@"os".mÂ·2 @"os".FileMode) IsRegular () (? bool) { return @"os".mÂ·2 & @"os".FileMode(0x8F000000) == @"os".FileMode(0x0) }
-	func (@"os".mÂ·2 @"os".FileMode) Perm () (? @"os".FileMode) { return @"os".mÂ·2 & @"os".FileMode(0x1FF) }
-	func (@"os".mÂ·2 @"os".FileMode) String () (? string)
-	import time "time" // indirect
-	type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
-	type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
-	type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
-	func (@"time".lÂ·2 *@"time".Location "esc:0x0") String () (? string)
-	func (@"time".lÂ·2 *@"time".Location "esc:0x0") @"time".firstZoneUsed () (? bool)
-	func (@"time".lÂ·2 *@"time".Location "esc:0x2") @"time".get () (? *@"time".Location)
-	func (@"time".lÂ·6 *@"time".Location "esc:0x1") @"time".lookup (@"time".secÂ·7 int64) (@"time".nameÂ·1 string, @"time".offsetÂ·2 int, @"time".isDSTÂ·3 bool, @"time".startÂ·4 int64, @"time".endÂ·5 int64)
-	func (@"time".lÂ·2 *@"time".Location "esc:0x0") @"time".lookupFirstZone () (? int)
-	func (@"time".lÂ·4 *@"time".Location "esc:0x0") @"time".lookupName (@"time".nameÂ·5 string "esc:0x0", @"time".unixÂ·6 int64) (@"time".offsetÂ·1 int, @"time".isDSTÂ·2 bool, @"time".okÂ·3 bool)
-	type @"time".Duration int64
-	func (@"time".dÂ·2 @"time".Duration) Hours () (? float64) { var @"time".hourÂ·3 @"time".Duration; ; @"time".hourÂ·3 = @"time".dÂ·2 / @"time".Duration(0x34630B8A000); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0x34630B8A000); return float64(@"time".hourÂ·3) + float64(@"time".nsecÂ·4) * 0x9C5FFF26ED75Fp-93 }
-	func (@"time".dÂ·2 @"time".Duration) Minutes () (? float64) { var @"time".minÂ·3 @"time".Duration; ; @"time".minÂ·3 = @"time".dÂ·2 / @"time".Duration(0xDF8475800); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0xDF8475800); return float64(@"time".minÂ·3) + float64(@"time".nsecÂ·4) * 0x9299FF347E9E9p-87 }
-	func (@"time".dÂ·2 @"time".Duration) Nanoseconds () (? int64) { return int64(@"time".dÂ·2) }
-	func (@"time".dÂ·2 @"time".Duration) Seconds () (? float64) { var @"time".secÂ·3 @"time".Duration; ; @"time".secÂ·3 = @"time".dÂ·2 / @"time".Duration(0x3B9ACA00); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0x3B9ACA00); return float64(@"time".secÂ·3) + float64(@"time".nsecÂ·4) * 0x112E0BE826D695p-82 }
-	func (@"time".dÂ·2 @"time".Duration) String () (? string)
-	type @"time".Month int
-	func (@"time".mÂ·2 @"time".Month) String () (? string) { return @"time".months[@"time".mÂ·2 - @"time".Month(0x1)] }
-	type @"time".Weekday int
-	func (@"time".dÂ·2 @"time".Weekday) String () (? string) { return @"time".days[@"time".dÂ·2] }
-	type @"time".Time struct { @"time".sec int64; @"time".nsec int32; @"time".loc *@"time".Location }
-	func (@"time".tÂ·2 @"time".Time "esc:0x2") Add (@"time".dÂ·3 @"time".Duration) (? @"time".Time)
-	func (@"time".tÂ·2 @"time".Time "esc:0x2") AddDate (@"time".yearsÂ·3 int, @"time".monthsÂ·4 int, @"time".daysÂ·5 int) (? @"time".Time)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") After (@"time".uÂ·3 @"time".Time "esc:0x0") (? bool) { return @"time".tÂ·2.@"time".sec > @"time".uÂ·3.@"time".sec || @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec > @"time".uÂ·3.@"time".nsec }
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Before (@"time".uÂ·3 @"time".Time "esc:0x0") (? bool) { return @"time".tÂ·2.@"time".sec < @"time".uÂ·3.@"time".sec || @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec < @"time".uÂ·3.@"time".nsec }
-	func (@"time".tÂ·4 @"time".Time "esc:0x0") Clock () (@"time".hourÂ·1 int, @"time".minÂ·2 int, @"time".secÂ·3 int)
-	func (@"time".tÂ·4 @"time".Time "esc:0x0") Date () (@"time".yearÂ·1 int, @"time".monthÂ·2 @"time".Month, @"time".dayÂ·3 int)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Day () (? int)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Equal (@"time".uÂ·3 @"time".Time "esc:0x0") (? bool) { return @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec == @"time".uÂ·3.@"time".nsec }
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Format (@"time".layoutÂ·3 string "esc:0x0") (? string)
-	func (@"time".tÂ·2 *@"time".Time "esc:0x0") GobDecode (@"time".dataÂ·3 []byte "esc:0x0") (? error)
-	func (@"time".tÂ·3 @"time".Time "esc:0x0") GobEncode () (? []byte, ? error)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Hour () (? int)
-	func (@"time".tÂ·3 @"time".Time "esc:0x0") ISOWeek () (@"time".yearÂ·1 int, @"time".weekÂ·2 int)
-	func (@"time".tÂ·2 @"time".Time "esc:0x2") In (@"time".locÂ·3 *@"time".Location "esc:0x2") (? @"time".Time)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") IsZero () (? bool) { return @"time".tÂ·2.@"time".sec == 0x0 && @"time".tÂ·2.@"time".nsec == 0x0 }
-	func (@"time".tÂ·2 @"time".Time "esc:0x2") Local () (? @"time".Time) { @"time".tÂ·2.@"time".loc = @"time".Local; return @"time".tÂ·2 }
-	func (@"time".tÂ·2 @"time".Time "esc:0x2") Location () (? *@"time".Location) { var @"time".lÂ·3 *@"time".Location; ; @"time".lÂ·3 = @"time".tÂ·2.@"time".loc; if @"time".lÂ·3 == nil { @"time".lÂ·3 = @"time".UTC }; return @"time".lÂ·3 }
-	func (@"time".tÂ·3 @"time".Time "esc:0x0") MarshalBinary () (? []byte, ? error)
-	func (@"time".tÂ·3 @"time".Time "esc:0x0") MarshalJSON () (? []byte, ? error)
-	func (@"time".tÂ·3 @"time".Time "esc:0x0") MarshalText () (? []byte, ? error)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Minute () (? int)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Month () (? @"time".Month)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Nanosecond () (? int) { return int(@"time".tÂ·2.@"time".nsec) }
-	func (@"time".tÂ·2 @"time".Time "esc:0x2") Round (@"time".dÂ·3 @"time".Duration) (? @"time".Time)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Second () (? int)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") String () (? string)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Sub (@"time".uÂ·3 @"time".Time "esc:0x0") (? @"time".Duration)
-	func (@"time".tÂ·2 @"time".Time "esc:0x2") Truncate (@"time".dÂ·3 @"time".Duration) (? @"time".Time)
-	func (@"time".tÂ·2 @"time".Time "esc:0x2") UTC () (? @"time".Time) { @"time".tÂ·2.@"time".loc = @"time".UTC; return @"time".tÂ·2 }
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Unix () (? int64) { return @"time".tÂ·2.@"time".sec + -0xE7791F700 }
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") UnixNano () (? int64) { return (@"time".tÂ·2.@"time".sec + -0xE7791F700) * 0x3B9ACA00 + int64(@"time".tÂ·2.@"time".nsec) }
-	func (@"time".tÂ·2 *@"time".Time "esc:0x0") UnmarshalBinary (@"time".dataÂ·3 []byte "esc:0x0") (? error)
-	func (@"time".tÂ·2 *@"time".Time "esc:0x0") UnmarshalJSON (@"time".dataÂ·3 []byte "esc:0x0") (@"time".errÂ·1 error)
-	func (@"time".tÂ·2 *@"time".Time "esc:0x0") UnmarshalText (@"time".dataÂ·3 []byte "esc:0x0") (@"time".errÂ·1 error)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Weekday () (? @"time".Weekday)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") Year () (? int)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") YearDay () (? int)
-	func (@"time".tÂ·3 @"time".Time "esc:0x0") Zone () (@"time".nameÂ·1 string, @"time".offsetÂ·2 int)
-	func (@"time".tÂ·2 @"time".Time "esc:0x0") @"time".abs () (? uint64)
-	func (@"time".tÂ·5 @"time".Time "esc:0x0") @"time".date (@"time".fullÂ·6 bool) (@"time".yearÂ·1 int, @"time".monthÂ·2 @"time".Month, @"time".dayÂ·3 int, @"time".ydayÂ·4 int)
-	func (@"time".tÂ·4 @"time".Time "esc:0x1") @"time".locabs () (@"time".nameÂ·1 string, @"time".offsetÂ·2 int, @"time".absÂ·3 uint64)
-	type @"os".FileInfo interface { IsDir() (? bool); ModTime() (? @"time".Time); Mode() (? @"os".FileMode); Name() (? string); Size() (? int64); Sys() (? interface {}) }
-	type @"os".File struct { @"os".? *@"os".file }
-	func (@"os".fÂ·2 *@"os".File) Chdir () (? error)
-	func (@"os".fÂ·2 *@"os".File) Chmod (@"os".modeÂ·3 @"os".FileMode) (? error)
-	func (@"os".fÂ·2 *@"os".File) Chown (@"os".uidÂ·3 int, @"os".gidÂ·4 int) (? error)
-	func (@"os".fÂ·2 *@"os".File) Close () (? error)
-	func (@"os".fÂ·2 *@"os".File "esc:0x0") Fd () (? uintptr) { if @"os".fÂ·2 == nil { return 0xFFFFFFFFFFFFFFFF }; return uintptr(@"os".fÂ·2.@"os".file.@"os".fd) }
-	func (@"os".fÂ·2 *@"os".File "esc:0x1") Name () (? string) { return @"os".fÂ·2.@"os".file.@"os".name }
-	func (@"os".fÂ·3 *@"os".File) Read (@"os".bÂ·4 []byte "esc:0x0") (@"os".nÂ·1 int, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File) ReadAt (@"os".bÂ·4 []byte "esc:0x0", @"os".offÂ·5 int64) (@"os".nÂ·1 int, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") Readdir (@"os".nÂ·4 int) (@"os".fiÂ·1 []@"os".FileInfo, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") Readdirnames (@"os".nÂ·4 int) (@"os".namesÂ·1 []string, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File) Seek (@"os".offsetÂ·4 int64, @"os".whenceÂ·5 int) (@"os".retÂ·1 int64, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File) Stat () (@"os".fiÂ·1 @"os".FileInfo, @"os".errÂ·2 error)
-	func (@"os".fÂ·2 *@"os".File "esc:0x0") Sync () (@"os".errÂ·1 error)
-	func (@"os".fÂ·2 *@"os".File) Truncate (@"os".sizeÂ·3 int64) (? error)
-	func (@"os".fÂ·3 *@"os".File) Write (@"os".bÂ·4 []byte "esc:0x0") (@"os".nÂ·1 int, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File) WriteAt (@"os".bÂ·4 []byte "esc:0x0", @"os".offÂ·5 int64) (@"os".nÂ·1 int, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File) WriteString (@"os".sÂ·4 string "esc:0x0") (@"os".retÂ·1 int, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") @"os".pread (@"os".bÂ·4 []byte "esc:0x0", @"os".offÂ·5 int64) (@"os".nÂ·1 int, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") @"os".pwrite (@"os".bÂ·4 []byte "esc:0x0", @"os".offÂ·5 int64) (@"os".nÂ·1 int, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") @"os".read (@"os".bÂ·4 []byte "esc:0x0") (@"os".nÂ·1 int, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") @"os".readdir (@"os".nÂ·4 int) (@"os".fiÂ·1 []@"os".FileInfo, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") @"os".readdirnames (@"os".nÂ·4 int) (@"os".namesÂ·1 []string, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") @"os".seek (@"os".offsetÂ·4 int64, @"os".whenceÂ·5 int) (@"os".retÂ·1 int64, @"os".errÂ·2 error)
-	func (@"os".fÂ·3 *@"os".File "esc:0x0") @"os".write (@"os".bÂ·4 []byte "esc:0x0") (@"os".nÂ·1 int, @"os".errÂ·2 error)
-	var @"os".Stdout *@"os".File
-	var @"time".months [12]string
-	var @"time".days [7]string
-	var @"time".Local *@"time".Location
-	var @"time".UTC *@"time".Location
-
-$$
- _go_.6          0           0     0     644     13241     `
-go object darwin amd64 go1.4.2 X:precisestack
-
-!
-  go13ld
-fmt.aio.aos.astrings.a ş"".NewCommand  €  òeH‹%    H;awè    ëêHƒì8H    H‰$è    H‹\$H‰\$ H‹    1íH9ètHH‹\$ H‰$Hƒ<$ t/H‹    H‰D$(H‰D$H‰L$0H‰L$è    H‹\$ H‰\$@HƒÄ8Ã‰%    ëÈH    H‰$H    H‰\$H    H‰\$è    H‹D$ë‰
-         0runtime.morestack_noctxt   :  type."".Command   L  "runtime.newobject   n  4go.itab.*os.File.io.Writer   ª  os.Stdout   Ü  2runtime.writebarrieriface   š  type.*os.File   °  type.io.Writer   È  4go.itab.*os.File.io.Writer   Ü   runtime.typ2Itab   p  "".autotmp_0000 / type.*"".Command "".~r0   type.*"".Command pfop? À "X?  %HS TgclocalsÂ·c8d8cde99df95cc5451afa5269462a20 TgclocalsÂ·61e2515c69061b8fed0e66ece719f936   ê/Users/lnguyen/workspace/bosh/influxdb-release/src/influxdb/src/github.com/influxdb/influxdb/cmd/influxd/help/help.goş""".(*Command).Run  À  ¼eH‹%    HD$øH;Awè    ëåHìˆ   HÇ„$°       HÇ„$¸       H    H,$H‰ïH‰ŞH¥H¥è    H‹\$H‰\$PH‹\$H‰\$XH\$`HÇ    HÇC    H\$`Hƒû „Ì   HÇÂ   HÇÁ   H‰\$pH‰T$xH‰Œ$€   H    H‰$H\$PH‰\$è    H‹L$H‹D$H‹\$pH‰$H‰L$@H‰L$H‰D$HH‰D$è    H‹¼$   Hƒÿ tTH/H<$H‰îH¥H¥H‹\$pH‰\$H‹\$xH‰\$H‹œ$€   H‰\$ è    HÇ„$°       HÇ„$¸       HÄˆ   Ã‰ë¨‰é-ÿÿÿ
-      *  0runtime.morestack_noctxt   z  ""..gostring.1      "strings.TrimSpace   Ü  type.string   ‚  runtime.convT2E   Ú  2runtime.writebarrieriface   Ş  fmt.Fprintln   `  "".autotmp_0008 "type.interface {} "".autotmp_0006 /&type.[]interface {} "".autotmp_0005 otype.string "".autotmp_0004 O(type.[1]interface {} "".~r1 @type.error "".args type.[]string "".cmd   type.*"".Command "° à 0:ù   Oqn2 TgclocalsÂ·1d70b41c873956f35b4015e37538a66c TgclocalsÂ·1eb9d8ec9969f1d922533aa863dff6f6   ê/Users/lnguyen/workspace/bosh/influxdb-release/src/influxdb/src/github.com/influxdb/influxdb/cmd/influxd/help/help.goş"".init  À  ²eH‹%    H;awè    ëê¶    €û t¶    €ûuÃè    Æ    è    è    è    è    Æ    Ã
-         0runtime.morestack_noctxt   2  "".initdoneÂ·   J  "".initdoneÂ·   `  "runtime.throwinit   p "".initdoneÂ·   |  strings.init   †  os.init     io.init   š  fmt.init   ¦ "".initdoneÂ·        ` ` :` 
- /1 TgclocalsÂ·3280bececceccd33cb74587feedb1f9f TgclocalsÂ·3280bececceccd33cb74587feedb1f9f   ê/Users/lnguyen/workspace/bosh/influxdb-release/src/influxdb/src/github.com/influxdb/influxdb/cmd/influxd/help/help.goş4type..hash.[1]interface {} à  ÎeH‹%    H;awè    ëêHƒì0H‹L$H1ÀHÇD$    H‹l$ H9è}eH‰D$(H‰ÅH‰ÈHÁÀH»¿c»kïR H¯ØH‰ØH‹\$8Hƒû tDHkíHëH‰$HÇD$   H‰D$HH‰D$è    H‹L$H‹D$(HÿÀH‹l$ H9è|›H‰L$PHƒÄ0Ã‰ë¸
-         0runtime.morestack_noctxt   ü  (runtime.nilinterhash   @`  "".autotmp_0014 type.int "".autotmp_0013 type.int "".~r3 0type.uintptr "".h  type.uintptr "".s type.uintptr "".p  *type.*[1]interface {} `ˆ_` ° ° 
- }3 TgclocalsÂ·2dc77d960dd3e4b3de2361f9cbd75783 TgclocalsÂ·3280bececceccd33cb74587feedb1f9f   ê/Users/lnguyen/workspace/bosh/influxdb-release/src/influxdb/src/github.com/influxdb/influxdb/cmd/influxd/help/help.goş0type..eq.[1]interface {} à  ÈeH‹%    H;awè    ëêHƒìX1ÀHÇD$(   H‹l$(H9è’   H‰D$0H‹\$hHƒû „–   H‰ÅHkíHëH‹H‹sH‹\$`Hƒû tvH‰ÅHkíHëH‹H‹SH9ÈuVH‰D$8H‰$H‰T$@H‰T$H‰L$HH‰L$H‰t$PH‰t$è    ¶\$ €û t H‹D$0HÿÀH‹l$(H9èŒnÿÿÿÆD$xHƒÄXÃÆD$x HƒÄXÃ‰ë†‰écÿÿÿ
-         0runtime.morestack_noctxt   Â  runtime.efaceeq   @°  "".autotmp_0018 ?"type.interface {} "".autotmp_0017 "type.interface {} "".autotmp_0016 _type.int "".autotmp_0015 Otype.int "".~r3 0type.bool "".s  type.uintptr "".q *type.*[1]interface {} "".p  *type.*[1]interface {} &°´¯°	¯° ğ ğ   P TgclocalsÂ·9c703c5c7b9c1932c840b69f8ebce236 TgclocalsÂ·44568aa369055d8938d809aa5d80843b   ê/Users/lnguyen/workspace/bosh/influxdb-release/src/influxdb/src/github.com/influxdb/influxdb/cmd/influxd/help/help.goş,4go.itab.*os.File.io.Writer     şTgclocalsÂ·61e2515c69061b8fed0e66ece719f936                   şTgclocalsÂ·c8d8cde99df95cc5451afa5269462a20                    ş""..gostring.1 à  Ô              
-Configure and start an InfluxDB server.
-
-Usage:
-
-	influxd [[command] [arguments]]
-
-The commands are:
-
-    backup               downloads a snapshot of a data node and saves it to disk
-    config               display the default configuration
-    restore              uses a snapshot of a data node to rebuild a cluster
-    run                  run node with existing configuration
-    version              displays the InfluxDB version
-
-"run" is the default command.
-
-Use "influxd help [command]" for more information about a command.
-    ""..gostring.1   şTgclocalsÂ·1eb9d8ec9969f1d922533aa863dff6f6 (  (           /      şTgclocalsÂ·1d70b41c873956f35b4015e37538a66c (  (      
-   
-   
-    şTgclocalsÂ·3280bececceccd33cb74587feedb1f9f           şTgclocalsÂ·3280bececceccd33cb74587feedb1f9f           ş,"".initdoneÂ·  type.uint8   ş "".NewCommandÂ·f              "".NewCommand   ş(runtime.newobjectÂ·f              "runtime.newobject   ş&runtime.typ2ItabÂ·f               runtime.typ2Itab   ş8runtime.writebarrierifaceÂ·f              2runtime.writebarrieriface   ş,runtime.throwreturnÂ·f              &runtime.throwreturn   ş("".(*Command).RunÂ·f              """.(*Command).Run   ş(strings.TrimSpaceÂ·f              "strings.TrimSpace   ş$runtime.convT2EÂ·f              runtime.convT2E   şfmt.FprintlnÂ·f              fmt.Fprintln   ş"".initÂ·f              "".init   ş(runtime.throwinitÂ·f              "runtime.throwinit   şstrings.initÂ·f              strings.init   şos.initÂ·f              os.init   şio.initÂ·f              io.init   şfmt.initÂ·f              fmt.init   şbruntime.gcbits.0x88000000000000000000000000000000     ˆ                ş2go.string."*help.Command" @  <               *help.Command    2go.string."*help.Command"   şbruntime.gcbits.0x48844400000000000000000000000000     H„D              ş(go.string."[]string" @  2               []string    (go.string."[]string"   ştype.[]string            Ó¨ó
-                                                                     runtime.algarray   0  bruntime.gcbits.0x48844400000000000000000000000000   P  (go.string."[]string"   p  ,go.weak.type.*[]string   €  "runtime.zerovalue     type.string   ş:go.typelink.[]string/[]string              type.[]string   ş`go.string."func(*help.Command, ...string) error" p  j        $       func(*help.Command, ...string) error    `go.string."func(*help.Command, ...string) error"   şNtype.func(*"".Command, ...string) error °  °       3;ø@ 3                                                                                                                                    €  runtime.algarray   0  bruntime.gcbits.0x88000000000000000000000000000000   P  `go.string."func(*help.Command, ...string) error"   p  `go.weak.type.*func(*"".Command, ...string) error   €  "runtime.zerovalue    € Ntype.func(*"".Command, ...string) error   Ğ  Ntype.func(*"".Command, ...string) error   €   type.*"".Command     type.[]string      type.error   şgo.string."Run" 0  (               Run    go.string."Run"   şBgo.string."func(...string) error" P  L               func(...string) error    Bgo.string."func(...string) error"   ş4type.func(...string) error            I‘Ûÿ 3                                                                                                                            €  runtime.algarray   0  bruntime.gcbits.0x88000000000000000000000000000000   P  Bgo.string."func(...string) error"   p  Fgo.weak.type.*func(...string) error   €  "runtime.zerovalue    € 4type.func(...string) error   Ğ 4type.func(...string) error   €  type.[]string     type.error   ş type.*"".Command  Ğ  Ğ       dÎ†„ 6                                                                                                                                                          runtime.algarray   0  bruntime.gcbits.0x88000000000000000000000000000000   P  2go.string."*help.Command"   p  2go.weak.type.**"".Command   €  "runtime.zerovalue     type."".Command   `   type.*"".Command   Àğ  type.*"".Command   ğ  go.string."Run"     4type.func(...string) error      Ntype.func(*"".Command, ...string) error   °  """.(*Command).Run   À  """.(*Command).Run   şbruntime.gcbits.0x8c000000000000000000000000000000     Œ                ş0go.string."help.Command" @  :               help.Command    0go.string."help.Command"   ş$go.string."Stdout" 0  .               Stdout    $go.string."Stdout"   ş&go.string."Command" 0  0               Command    &go.string."Command"   ştype."".Command  à  à       Şú˜À                                                                                                                                                                à  runtime.algarray   0  bruntime.gcbits.0x8c000000000000000000000000000000   P  0go.string."help.Command"   p   type.*"".Command   €  "runtime.zerovalue   À type."".Command   À  $go.string."Stdout"   à  type.io.Writer   ` type."".Command     &go.string."Command"      "go.importpath."".   °à type."".Command   şbruntime.gcbits.0xcc000000000000000000000000000000     Ì                ş0go.string."interface {}" @  :               interface {}    0go.string."interface {}"   ş"type.interface {} À  À       çW                                                                                   €  runtime.algarray   0  bruntime.gcbits.0xcc000000000000000000000000000000   P  0go.string."interface {}"   p  4go.weak.type.*interface {}   €  "runtime.zerovalue   À "type.interface {}   ş4go.string."[]interface {}" @  >               []interface {}    4go.string."[]interface {}"   ş&type.[]interface {}            p“ê/                                                                     runtime.algarray   0  bruntime.gcbits.0x48844400000000000000000000000000   P  4go.string."[]interface {}"   p  8go.weak.type.*[]interface {}   €  "runtime.zerovalue     "type.interface {}   şRgo.typelink.[]interface {}/[]interface {}              &type.[]interface {}   şTgclocalsÂ·3280bececceccd33cb74587feedb1f9f           şTgclocalsÂ·2dc77d960dd3e4b3de2361f9cbd75783             şTgclocalsÂ·44568aa369055d8938d809aa5d80843b              şTgclocalsÂ·9c703c5c7b9c1932c840b69f8ebce236             ş<type..hashfunc.[1]interface {}              4type..hash.[1]interface {}   ş8type..eqfunc.[1]interface {}              0type..eq.[1]interface {}   ş2type..alg.[1]interface {}                        <type..hashfunc.[1]interface {}     8type..eqfunc.[1]interface {}   ş6go.string."[1]interface {}" @  @               [1]interface {}    6go.string."[1]interface {}"   ş(type.[1]interface {} À  À       P‘[ú                                                                                   2type..alg.[1]interface {}   0  bruntime.gcbits.0xcc000000000000000000000000000000   P  6go.string."[1]interface {}"   p  :go.weak.type.*[1]interface {}   €  "runtime.zerovalue     "type.interface {}      &type.[]interface {}   şVgo.typelink.[1]interface {}/[1]interface {}              (type.[1]interface {}   ş8go.string."*[1]interface {}" P  B               *[1]interface {}    8go.string."*[1]interface {}"   ş*type.*[1]interface {}            ¿¨5 6                                                                    runtime.algarray   0  bruntime.gcbits.0x88000000000000000000000000000000   P  8go.string."*[1]interface {}"   p  <go.weak.type.**[1]interface {}   €  "runtime.zerovalue     (type.[1]interface {}   ş&go.string."runtime" 0  0               runtime    &go.string."runtime"   ş,go.importpath.runtime.                       &go.string."runtime"   şgo.string."io" 0  &               io    go.string."io"   ş"go.importpath.io.                       go.string."io"   şgo.string."os" 0  &               os    go.string."os"   ş"go.importpath.os.                       go.string."os"   ş&go.string."strings" 0  0               strings    &go.string."strings"   ş,go.importpath.strings.                       &go.string."strings"   şgo.string."fmt" 0  (               fmt    go.string."fmt"   ş$go.importpath.fmt.                       go.string."fmt"   ş:type..hash.[1]interface {}Â·f              4type..hash.[1]interface {}   ş.runtime.nilinterhashÂ·f              (runtime.nilinterhash   ş6type..eq.[1]interface {}Â·f              0type..eq.[1]interface {}   ş$runtime.efaceeqÂ·f              runtime.efaceeq   ş"runtime.zerovalue      ÿÿgo13ld 
