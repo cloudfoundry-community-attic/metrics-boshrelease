@@ -1,0 +1,43 @@
+---
+packages:
+- name: bootstrapper
+  version: 8d3d3e0b38c04423d5a3348989a665046f7991ca
+  fingerprint: 8d3d3e0b38c04423d5a3348989a665046f7991ca
+  sha1: d188bb09205c675fe8ba9a2da69b35b8c04a5054
+  dependencies: []
+- name: grafana
+  version: edabf0bd5a909fd446bb048e19a034660daaa231
+  fingerprint: edabf0bd5a909fd446bb048e19a034660daaa231
+  sha1: a9a7503d14c5a138b8c755946fb6fff020dc40b6
+  dependencies: []
+- name: influxdb
+  version: fc54812a210cc40254294c87ded4305a3c7af94b
+  fingerprint: fc54812a210cc40254294c87ded4305a3c7af94b
+  sha1: e60195859d249d658027be971ebd7ad4fb28cc90
+  dependencies: []
+- name: telegraf
+  version: df813ff7233d696fc7e4c013640003a0ea1c6759
+  fingerprint: df813ff7233d696fc7e4c013640003a0ea1c6759
+  sha1: 5a8176e00213c448e63a84a6bae98af87e288022
+  dependencies: []
+jobs:
+- name: grafana
+  version: 101ffa6ce9ad14b17fb028f46b6e30ef214e0ab0
+  fingerprint: 101ffa6ce9ad14b17fb028f46b6e30ef214e0ab0
+  sha1: 39f04280d24e8d2eb9b410fc06d1cb7d78cddfff
+- name: influxdb
+  version: 8b2b90bb9b29ffdb1e63e5dcebae9f763e7305a8
+  fingerprint: 8b2b90bb9b29ffdb1e63e5dcebae9f763e7305a8
+  sha1: 53da715b3ccdf88b6ad0642a00ada3027407bc9e
+- name: telegraf
+  version: 0c13b7748a3cd26a56430ae55ec52c9f8e10ea24
+  fingerprint: 0c13b7748a3cd26a56430ae55ec52c9f8e10ea24
+  sha1: 9fa40b46d057640f7019f6c062c8397b48907d13
+license:
+  version: 79267db2e7516e504dfe773afdfd03a5ecfaf43a
+  fingerprint: 79267db2e7516e504dfe773afdfd03a5ecfaf43a
+  sha1: 3c161cfbf9f10c99de9ded801aa73695ec9a105c
+commit_hash: 8e3d31f6
+uncommitted_changes: true
+name: metrics
+version: '1'
