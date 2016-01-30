@@ -97,4 +97,13 @@
 
 		# HTTP method to use (case-sensitive)
 		method = "GET"
-  <% end %>
+<% end %>
+<% if properties.telegraf.docker %>
+[[inputs.docker]]
+  endpoint = "unix:///var/vcap/sys/run/docker/docker.sock"
+
+[[inputs.exec]]
+  command = "/var/vcap/packages/docker-count/bin/docker-count -endpoint unix:///var/vcap/sys/run/docker/docker.sock"
+  name_suffix = "_docker_container_count"
+  interval = "10s"
+<% end %>

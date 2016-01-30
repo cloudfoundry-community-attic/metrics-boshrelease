@@ -18,6 +18,9 @@ properties:
   telegraf.httpjson:
     description: "httpjson name and uri"
 
+  telegraf.docker:
+    description: "docker telegraf input"
+
   influxdb.host:
     description: "host of influxdb"
   influxdb.port:

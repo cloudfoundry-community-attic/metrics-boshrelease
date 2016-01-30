@@ -1,0 +1,7 @@
+---
+name: docker-tools
+packages:
+  - docker-count
+templates:
+  ignore: ignore
+properties: {}

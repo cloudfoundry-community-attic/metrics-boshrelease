@@ -1,0 +1,6 @@
+---
+name: docker-count
+dependencies:
+- golang
+files:
+- docker-count/**/*

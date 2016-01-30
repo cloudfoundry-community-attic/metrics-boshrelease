@@ -19,3 +19,15 @@ influxdb/influxdb_0.9.4.2_x86_64.tar.gz:
   object_id: 1f7ae69d-693e-4d02-863f-476c0981e661
   sha: 4b1bf1e6ed8dbb6a30e6182cab0d66e5417610ab
   size: 8354832
+chronograf/chronograf:
+  object_id: 085eedd1-e329-46e0-b0b3-b39e25b0ac35
+  sha: 887868bbcaf52bac395bdfd0768cf937640ffd04
+  size: 16110296
+golang_1.5/go1.5.3.linux-amd64.tar.gz:
+  object_id: 0a2d1611-c623-4dc4-b8a0-2c29068550b7
+  sha: c5377eca4837968d043b681f00a852a262f0f5f6
+  size: 80147269
+telegraf/telegraf_linux_amd64_0.10.1.tar.gz:
+  object_id: 63884800-d62c-41f6-a083-158269a35994
+  sha: 7695ba707c86256b130a20973c7d2fe72f10ce5b
+  size: 8257744

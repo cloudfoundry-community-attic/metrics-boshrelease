@@ -4,4 +4,5 @@ set -u # report the usage of uninitialized variables
 mkdir -p ${BOSH_INSTALL_TARGET}/bin
 
 tar -zxf telegraf/telegraf_linux_amd64_*.tar.gz -C ${BOSH_INSTALL_TARGET}
-mv ${BOSH_INSTALL_TARGET}/telegraf_linux_amd64 ${BOSH_INSTALL_TARGET}/bin/telegraf
+mv ${BOSH_INSTALL_TARGET}/usr/bin/telegraf ${BOSH_INSTALL_TARGET}/bin/telegraf
+rm -rf ${BOSH_INSTALL_TARGET}/{usr,etc,var}rm -rf ${BOSH_INSTALL_TARGET}/{usr,etc,var}
