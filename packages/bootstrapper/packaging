@@ -1,6 +1,18 @@
 # abort script on any command that exits with a non zero value
 set -e
 
-mv bootstrapper/bootstrapper ${BOSH_INSTALL_TARGET}
+REPO_NAME=bootstrapper
 
-chmod +x ${BOSH_INSTALL_TARGET}/bootstrapper
+REPO_DIR=${BOSH_INSTALL_TARGET}/src/${REPO_NAME}
+
+mkdir -p $(dirname $REPO_DIR)
+
+cp -a $(basename $REPO_NAME)/ $REPO_DIR
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export GOPATH=$BOSH_INSTALL_TARGET:${REPO_DIR}/Godeps/_workspace
+export PATH=$GOROOT/bin:$PATH
+
+pushd $REPO_DIR
+ls -lha
+go install .

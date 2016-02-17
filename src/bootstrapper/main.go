@@ -3,10 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"net/url"
 	"os"
 
-	"github.com/influxdb/influxdb/client"
+	"github.com/influxdata/influxdb/client/v2"
 )
 
 func main() {
@@ -24,14 +23,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	influxServerUrl, _ := url.Parse(*influxUrl)
-	influxConfig := client.Config{
-		URL:       *influxServerUrl,
+	influxConfig := client.HTTPConfig{
+		Addr:      *influxUrl,
 		Username:  *influxUser,
 		Password:  *influxPassword,
 		UserAgent: "influx-bootstrap",
 	}
-	dbClient, err := client.NewClient(influxConfig)
+	dbClient, err := client.NewHTTPClient(influxConfig)
 	if err != nil {
 		panic(fmt.Sprintf("Error connecting to Influx DB: %s", err))
 	}

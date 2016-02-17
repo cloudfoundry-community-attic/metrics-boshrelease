@@ -1,7 +1,8 @@
 ---
 name: bootstrapper
 
-dependencies: []
+dependencies:
+- golang
 
 files:
-- bootstrapper/*
+- bootstrapper/**/*

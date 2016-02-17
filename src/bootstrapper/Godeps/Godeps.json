@@ -1,0 +1,21 @@
+{
+	"ImportPath": "bootstrapper",
+	"GoVersion": "go1.5.1",
+	"Deps": [
+		{
+			"ImportPath": "github.com/influxdata/influxdb/client/v2",
+			"Comment": "v0.10.0-230-gf315444",
+			"Rev": "f315444f867f1bcece5176b841275c2fb8bd2873"
+		},
+		{
+			"ImportPath": "github.com/influxdata/influxdb/models",
+			"Comment": "v0.10.0-230-gf315444",
+			"Rev": "f315444f867f1bcece5176b841275c2fb8bd2873"
+		},
+		{
+			"ImportPath": "github.com/influxdata/influxdb/pkg/escape",
+			"Comment": "v0.10.0-230-gf315444",
+			"Rev": "f315444f867f1bcece5176b841275c2fb8bd2873"
+		}
+	]
+}
