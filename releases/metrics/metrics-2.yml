@@ -1,0 +1,68 @@
+---
+packages:
+- name: bootstrapper
+  version: 0a0c2d80f44d53a4fcc1e40e786c8f77ea1e3dbf
+  fingerprint: 0a0c2d80f44d53a4fcc1e40e786c8f77ea1e3dbf
+  sha1: fc64d72218245953b722944580c70bf28978b6e6
+  dependencies:
+  - golang
+- name: chronograf
+  version: b58c5b97af2acea223765bae56476c10d2dce2e4
+  fingerprint: b58c5b97af2acea223765bae56476c10d2dce2e4
+  sha1: 37fbc8e65bc7010439b73441111b57f508d213d0
+  dependencies: []
+- name: docker-count
+  version: 74103ec431300f645f6ad7173856786afd8ceddd
+  fingerprint: 74103ec431300f645f6ad7173856786afd8ceddd
+  sha1: f984fd9e1be93ea1a84bbdc4602e9c71ec8f0476
+  dependencies:
+  - golang
+- name: golang
+  version: 7bddc02ea4a7cc8f325253cea9dbe01ab6ea8129
+  fingerprint: 7bddc02ea4a7cc8f325253cea9dbe01ab6ea8129
+  sha1: 3e7413c37d1ece910fbe180ec858adc7532a8d8f
+  dependencies: []
+- name: grafana
+  version: edabf0bd5a909fd446bb048e19a034660daaa231
+  fingerprint: edabf0bd5a909fd446bb048e19a034660daaa231
+  sha1: a9a7503d14c5a138b8c755946fb6fff020dc40b6
+  dependencies: []
+- name: influxdb
+  version: fc54812a210cc40254294c87ded4305a3c7af94b
+  fingerprint: fc54812a210cc40254294c87ded4305a3c7af94b
+  sha1: e60195859d249d658027be971ebd7ad4fb28cc90
+  dependencies: []
+- name: telegraf
+  version: 25af7caf3c7c65c8d3a5537016194055f9ab274c
+  fingerprint: 25af7caf3c7c65c8d3a5537016194055f9ab274c
+  sha1: 09b5bdcbce80cf9a9e648372fdd6e60baed34b51
+  dependencies: []
+jobs:
+- name: chronograf
+  version: 26752799e420756b022d406302bd2535c5c7c22a
+  fingerprint: 26752799e420756b022d406302bd2535c5c7c22a
+  sha1: 77107c69a3fc2dd2f4f429de66d71d969df3eb30
+- name: docker-tools
+  version: d8b45babe4404d31b20edbcbb2494869f8998b66
+  fingerprint: d8b45babe4404d31b20edbcbb2494869f8998b66
+  sha1: 7545d1a787555cb86159fbc6ec4435ff9ca3140b
+- name: grafana
+  version: 101ffa6ce9ad14b17fb028f46b6e30ef214e0ab0
+  fingerprint: 101ffa6ce9ad14b17fb028f46b6e30ef214e0ab0
+  sha1: 39f04280d24e8d2eb9b410fc06d1cb7d78cddfff
+- name: influxdb
+  version: 0e9994fc069bf684952b1154929e13a5b5b05d93
+  fingerprint: 0e9994fc069bf684952b1154929e13a5b5b05d93
+  sha1: c064c5995a20195fb42c91c445cb42332efc1482
+- name: telegraf
+  version: a4cd23ae3e78a63b940c901db1c891b275cd2f60
+  fingerprint: a4cd23ae3e78a63b940c901db1c891b275cd2f60
+  sha1: a20f366c7b4963b08486fdc46b3b3fb6c6b7d483
+license:
+  version: 79267db2e7516e504dfe773afdfd03a5ecfaf43a
+  fingerprint: 79267db2e7516e504dfe773afdfd03a5ecfaf43a
+  sha1: 3c161cfbf9f10c99de9ded801aa73695ec9a105c
+commit_hash: 9ebb0214
+uncommitted_changes: true
+name: metrics
+version: '2'
